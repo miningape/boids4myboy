@@ -1,17 +1,3 @@
-class kame {
-  PVector pos = PVector.random2D();
-  float r = 10;
-  
-  kame () {
-    pos = new PVector(random(width), random(height/2));
-  }
-  
-  void show() {
-    fill(#ff00ff);
-    ellipse(pos.x, pos.y, 2*r, 2*r); 
-  }
-}
-
 class boid {
   PVector pos, vel, acc;
   float theta;
@@ -56,8 +42,8 @@ class boid {
   
   // Creates a hidden circle around the boid, if the ball and the circle
   // intersect the method returns true as the ball and bird are colliding
-  boolean collides (ArrayList<kame> has) {
-    for (kame ha : has) {
+  boolean collides (ArrayList<Kame> has) {
+    for (Kame ha : has) {
       PVector dir = vel.copy().normalize();
       
       // Tracks the center of our boid
@@ -78,7 +64,7 @@ class boid {
   }
   
   // Container method to call all the actions a boid will take in a frame
-  void action (ArrayList<boid> boids, ArrayList<kame> has) {
+  void action (ArrayList<boid> boids, ArrayList<Kame> has) {
     behaviour_force(boids, has);      // Gets the resultant force on boid
     update ();                   // Updates pos, and vel
     border_loop ();              // Makes sure the boids are on screen
@@ -88,8 +74,8 @@ class boid {
   // Function applys a force to the boid based on its neighbors
   // This function is more of a wrapper to calculate all the forces
   // on a boid at once
-  void behaviour_force (ArrayList<boid> boids, ArrayList<kame> has) {
-    for (kame ha : has) {
+  void behaviour_force (ArrayList<boid> boids, ArrayList<Kame> has) {
+    for (Kame ha : has) {
       if (PVector.dist(ha.pos, this.pos) < 40)
         applyForce( seek(ha.pos).mult(-1) );
     }

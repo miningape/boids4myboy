@@ -12,9 +12,9 @@ class Flock {
     return color(random(255), random(255), random(255));
   }
   
-  void update(ArrayList<kame> has) {
-    for (kame ha : has) {
-      ha.show(); 
+  void update(ArrayList<Kame> has) {
+    for (Kame ha : has) {
+      ha.drawchi(); 
     }
     for (int i = boids.size() - 1; i > 0; i--) {
       boids.get(i).action(boids, has); 
